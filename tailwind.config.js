@@ -36,6 +36,7 @@ export default {
         ".font-outline-4": {
           "-webkit-text-stroke": "4px #F2F2F2",
         }
+
       })
     }
   ],

@@ -1,9 +1,12 @@
 import Navbar from "../../shared/features/navbar_feature";
+import HeaderComponent from "../components/header_component";
 import DescriptionBackground from "../features/description_background";
+import MainTransactionFeeature from "../features/main_transaction_feature";
 
 export default function MainPageLayout() {
     return <DescriptionBackground>
         <Navbar />
-        <p className="font-title text-6xl font-semibold mx-auto text-center"><span className="text-primary">Money</span> transaction<br />made <span className="text-primary">easy!</span></p>
-    </DescriptionBackground>
+        <HeaderComponent />
+        <MainTransactionFeeature />
+    </DescriptionBackground >
 }
