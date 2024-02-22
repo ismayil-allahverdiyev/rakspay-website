@@ -3,7 +3,7 @@ import DefaultBoxMiddleComponent from "../components/details_box_middle_componen
 import DetailsBoxEndComponent from "../components/details_box_end_component";
 
 export default function DetailsBoxFeature() {
-    return <div className="flex flex-row flex-grow space-x-2">
+    return <div className="flex flex-row flex-grow space-x-2 w-full">
         <DetailsBoxStartComponent />
         <DefaultBoxMiddleComponent />
         <DetailsBoxEndComponent />

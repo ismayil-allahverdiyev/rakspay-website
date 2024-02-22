@@ -8,7 +8,7 @@ interface ICustomDropdownComponentProps {
 }
 
 export default function CustomDropdownComponent(props: ICustomDropdownComponentProps) {
-    return <div className="w-[45%] font-bold relative  text-black">
+    return <div className="md:w-[45%] w-full font-bold relative  text-black">
         <div>
             <p className="ml-3 mb-1 font-semibold text-white">
                 {props.title}
