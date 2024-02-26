@@ -15,11 +15,11 @@ export default function FooterFeature() {
             <MdOutlineCopyright size={20} />
             <p className="font-bold">Since 2020 at your service, Istanbul</p>
         </div>
-        <div className="flex-col items-end w-[70%] bg-custom-grey-dark absolute right-0 -top-8 pl-14 pt-16 md:block hidden">
+        <div className="flex-col w-[70%] bg-custom-grey-dark absolute right-0 -top-8 pl-14 pt-16 pb-12 md:block hidden">
             <p className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-3xl text-2xl text-white w-3/4 font-light pb-48 mr-auto">
                 Effortlessly Facilitating Reliable and Secure Money Transfers
             </p>
-            <CustomButtonComponent title="Contact us" style="mb-12 mr-14" />
+            <CustomButtonComponent title="Contact us" url="/transaction" />
         </div>
     </div>
 

@@ -9,7 +9,7 @@ export default function HeaderComponent() {
             <p className="xl:text-2xl lg:text-xl md:text-lg lg:block hidden">
                 Backed by extensive international user feedback, our services offer a secure and dependable avenue for monetary transactions.
             </p>
-            <CustomButtonComponent title="More" style="lg:text-xl text-md" />
+            <CustomButtonComponent title="More" style="lg:text-xl text-md" url="/" />
         </div>
     </div>;
 }

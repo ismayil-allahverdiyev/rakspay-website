@@ -18,7 +18,7 @@ export default function ReviewPart() {
                 <ReviewFeature style="md:my-0 mb-4" />
             </div>
         </div>
-        <CustomButtonComponent title="More reviews" style='absolute md:bottom-24 nd:right-12 bottom-4 right-8' />
+        <CustomButtonComponent title="More reviews" style='absolute md:bottom-24 nd:right-12 bottom-4 right-8' url='/reviews' />
     </div>
 }
 
@@ -28,6 +28,6 @@ interface WhyUsPartProps {
 
 function WhyUsPart(props: WhyUsPartProps) {
     return <p className={`my-4 mb-8 2xl:text-9xl xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-4xl text-primary text-center font-title font-extrabold tracking-[1.5rem] drop-shadow-[8px_4px_var(--tw-shadow-color)] shadow-gray-500 ${props.style}`}>
-        Why us?
+        WHY US?
     </p>
 }
