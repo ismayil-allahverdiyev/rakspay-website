@@ -3,34 +3,32 @@ import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../../../config/firebase/fbConfig";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-interface IReviews {
-    reviewList: IReview[],
-}
-
-export interface IReview {
-    main: string,
-    title: string,
-    description: string,
-    date: string,
-    id: string,
+interface ITransaction {
+    selectedFromCountry: String,
+    selectedToCountry: String,
+    selectedCurrency: String,
+    selectedAmount: Number,
+    email: String,
 }
 
 const reviewsSlice = createSlice({
-    name: 'reviews',
+    name: 'transaction',
     initialState: {
-        reviewList: [],
-    } as IReviews,
+        selectedAmount: 0,
+        selectedCurrency: '',
+        selectedFromCountry: '',
+        selectedToCountry: '',
+        email: '',
+    } as ITransaction,
     reducers: {
         setReviews(state, action) {
-            console.log('setReviews');
-            console.log(action.payload);
-            state.reviewList = action.payload;
+            
         }
     }
 })
 
 export interface IReviewState {
-    reviews: IReviews,
+    reviews: ITransaction,
 }
 
 export const getReviews = createAsyncThunk(
@@ -38,25 +36,11 @@ export const getReviews = createAsyncThunk(
     async (dispatch: AppDispatch) => {
         console.log('getReviews');
         const getReviews = async () => {
-            console.log('getReviews');
-            const reviews = collection(firestore, 'reviews');
-            const data = await getDocs(reviews);
-            const res = [] as IReview[];
-            data.forEach((doc) => res.push({
-                id: doc.id,
-                date: doc.data().date.toDate().toDateString(),
-                description: doc.data().description,
-                main: doc.data().main,
-                title: doc.data().title,
-            } as IReview));
-
-            return res;
+            
         }
 
         try {
-            var response = await getReviews();
-
-            dispatch(reviewActions.setReviews(response));
+            // dispatch(reviewActions.setReviews(response));
         }
         catch (error) {
             console.log(error);
