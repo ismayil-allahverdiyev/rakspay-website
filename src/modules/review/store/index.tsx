@@ -1,7 +1,7 @@
 import { createSlice, configureStore, createAsyncThunk } from "@reduxjs/toolkit";
 import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../../../config/firebase/fbConfig";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 interface IReviews {
     reviewList: IReview[],
