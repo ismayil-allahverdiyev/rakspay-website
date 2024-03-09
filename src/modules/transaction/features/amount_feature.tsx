@@ -1,20 +1,30 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import CustomDropdownComponent from "../../shared/components/general/custom_dropdown_component";
-import { useAppSelector } from "../store";
+import { AppDispatch, setAmount, useAppSelector } from "../store";
+import { useDispatch } from "react-redux";
 
 export default function AmountFeature() {
 
+    const dispatch = useDispatch<AppDispatch>();
     const selectedCurrency = useAppSelector((state) => state.transaction.selectedCurrency);
 
-    var infoRef = useRef<HTMLInputElement>(null);
+    var amountRef = useRef<HTMLInputElement>(null);
+
+    var number = useAppSelector((state) => state.transaction.number);
+
+    useEffect(() => {
+        amountRef.current!.value = number;
+    }, [number])
 
     return <div className="flex flex-row w-[40%] mt-2 items-end">
         <div className="w-[50%] font-bold relative text-black mr-8">
             <p className="ml-3 mb-1 font-semibold text-white">
                 Amount
             </p>
-            <input ref={infoRef} type="number" className="px-2 py-4 outline-none bg-white rounded-lg" />
+            <div className="flex flex-row items-center">
+                <input ref={amountRef} type="number" className="px-2 py-4 outline-none bg-white rounded-lg relative z-10 w-32 mr-6" onChange={value => setAmount(value.target.valueAsNumber, dispatch)} />
+                <CustomDropdownComponent placeholder="TL" title="" values={["TL", "USD",]} selectedValue={selectedCurrency} style="w-24" />
+            </div>
         </div>
-        <CustomDropdownComponent placeholder="TL" title="" values={["TL", "USD",]} selectedValue={selectedCurrency} />
     </div>
 }

@@ -8,6 +8,7 @@ interface ICustomDropdownComponentProps {
     placeholder: string;
     values: string[];
     selectedValue?: string;
+    style?: string;
 }
 
 export default function CustomDropdownComponent(props: ICustomDropdownComponentProps) {
@@ -15,16 +16,16 @@ export default function CustomDropdownComponent(props: ICustomDropdownComponentP
 
     const dispatch = useDispatch<AppDispatch>();
 
-    return <div className="md:w-[45%] w-full font-bold relative  text-black">
+    return <div className="md:w-[45%] w-full font-bold relative text-black">
         <div>
-            <p className="ml-3 mb-1 font-semibold text-white">
+            <p className={`ml-3 font-semibold text-white ${props.title != "" ? " mb-1" : ""}`}>
                 {props.title}
             </p>
-            <button className="flex justify-between w-full px-2 py-4 bg-white rounded-lg" onClick={() => openClose(props.title, dispatch)}>
+            <button className={`flex justify-between items-end px-2 py-4 bg-white rounded-lg relative z-20 ${props.style ?? "w-full"}`} onClick={() => openClose(props.title, dispatch)}>
                 <p>{props.selectedValue == "" ? props.placeholder : props.selectedValue}</p>
                 <img src={IconMenuDown} alt="" />
             </button>
-            <div className={`w-full bg-white mt-2 rounded-lg absolute ${isOn ? "block z-20 shadow-md" : "hidden"}`}>
+            <div className={`w-full bg-white mt-2 rounded-lg absolute ${isOn ? "block z-40 shadow-md" : "hidden"}`}>
                 {props.values.map((value, index) => {
                     return <p key={index} className="px-2 py-2 hover:bg-[#F2F2F2] cursor-pointer rounded-lg" onClick={() => selectFunc(props.title, value, dispatch)}>{value}</p>
                 })}
