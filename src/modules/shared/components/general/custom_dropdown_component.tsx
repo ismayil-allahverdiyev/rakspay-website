@@ -10,11 +10,11 @@ interface ICustomDropdownComponentProps {
     values: string[];
     selectedValue?: string;
     style?: string;
-    isOn?: boolean;
+    id: number;
 }
 
 export default function CustomDropdownComponent(props: ICustomDropdownComponentProps) {
-    const isOn = useAppSelector((state) => props.title == "From" ? state.transaction.isFromCountryOpen : props.title == "To" ? state.transaction.isToCountryOpen : state.transaction.isCurrencyOpen);
+    const isOn = useAppSelector((state) => props.id == 0 ? state.transaction.isFromCountryOpen : props.id == 1 ? state.transaction.isToCountryOpen : props.id == 3 ? state.transaction.isCurrencyOpen : state.transaction.isCountryOpen);
 
     const dispatch = useDispatch<AppDispatch>();
     var language = useTranslation("global").i18n.language;
@@ -28,13 +28,13 @@ export default function CustomDropdownComponent(props: ICustomDropdownComponentP
             <p className={`ml-3 font-semibold text-white ${props.title != "" ? " mb-1" : ""}`}>
                 {props.title}
             </p>
-            <button className={`flex justify-between items-end px-2 py-4 bg-white rounded-lg relative z-20 ${props.style ?? "w-full"}`} onClick={() => openClose(props.title, dispatch)}>
+            <button className={`flex justify-between items-end px-2 py-4 bg-white rounded-lg relative z-20 ${props.style ?? "w-full"}`} onClick={() => openClose(props.id, dispatch)}>
                 <p>{props.selectedValue == "" ? props.placeholder : props.selectedValue}</p>
                 <img src={IconMenuDown} alt="" />
             </button>
             <div className={`w-full bg-white mt-2 rounded-lg absolute ${isOn ? "block z-40 shadow-md" : "hidden"}`}>
                 {props.values.map((value, index) => {
-                    return <p key={index} className="px-2 py-2 hover:bg-[#F2F2F2] cursor-pointer rounded-lg" onClick={() => selectFunc(props.title, value, dispatch)}>{value}</p>
+                    return <p key={index} className="px-2 py-2 hover:bg-[#F2F2F2] cursor-pointer rounded-lg" onClick={() => selectFunc(props.id, value, dispatch)}>{value}</p>
                 })}
             </div>
         </div>

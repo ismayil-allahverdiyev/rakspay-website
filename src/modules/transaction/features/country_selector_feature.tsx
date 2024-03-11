@@ -12,7 +12,7 @@ export default function CountrySelectorFeature() {
     const t = useTranslation("global").t;
 
     return <div className="flex justify-between w-full md:flex-row md:space-y-0 space-y-2 flex-col">
-        <CustomDropdownComponent placeholder={t("transaction.select_country")} title={t("transaction.from")} values={countryList} selectedValue={selectedFromCountry} />
-        <CustomDropdownComponent placeholder={t("transaction.select_country")} title={t("transaction.to")} values={countryList} selectedValue={selectedToCountry} />
+        <CustomDropdownComponent placeholder={t("transaction.select_country")} title={t("transaction.from")} values={countryList} selectedValue={selectedFromCountry} id={0} />
+        <CustomDropdownComponent placeholder={t("transaction.select_country")} title={t("transaction.to")} values={countryList} selectedValue={selectedToCountry} id={1} />
     </div>;
 }

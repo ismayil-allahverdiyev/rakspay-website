@@ -62,6 +62,7 @@ const transactionSlice = createSlice({
             state.isCountryOpen = false;
         },
         openCloseFromCountry(state) {
+            console.log("Open Close From Country");
             state.isFromCountryOpen = !state.isFromCountryOpen;
             state.isToCountryOpen = false;
             state.isCurrencyOpen = false;
@@ -125,26 +126,26 @@ export type RootState = ReturnType<typeof TransactionStore.getState>
 export type AppDispatch = typeof TransactionStore.dispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
-export const openClose = (title: string, dispatch: AppDispatch) => {
-    if (title == "From") {
+export const openClose = (id: number, dispatch: AppDispatch) => {
+    if (id == 0) {
         dispatch(transactionActions.openCloseFromCountry());
     }
-    else if (title == "To") {
+    else if (id == 1) {
         dispatch(transactionActions.openCloseToCountry());
     }
-    else {
+    else if (id == 3) {
         dispatch(transactionActions.openCloseCurrency());
     }
 }
 
-export const selectFunc = (title: string, value: string, dispatch: AppDispatch) => {
-    if (title == "From") {
+export const selectFunc = (id: number, value: string, dispatch: AppDispatch) => {
+    if (id == 0) {
         dispatch(transactionActions.setFromCountry(value));
-    } else if (title == "To") {
+    } else if (id == 1) {
         dispatch(transactionActions.setToCountry(value));
-    } else if (title == "Country") {
+    } else if (id == 2) {
         dispatch(transactionActions.setPhoneCode(value));
-    } else {
+    } else if (id == 3) {
         dispatch(transactionActions.setCurrency(value));
     }
 }

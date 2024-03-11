@@ -30,7 +30,7 @@ export default function PhoneCodeComponent(props: PhoneCodeComponentProps) {
             </button>
             <div className={`w-full h-32 overflow-y-auto bg-white mt-2 rounded-lg absolute ${isOn ? "block z-40 shadow-md" : "hidden"}`}>
                 {countryCodes.map((value, index) => {
-                    return <p key={index} className="px-2 py-2 hover:bg-[#F2F2F2] cursor-pointer rounded-lg" onClick={() => selectFunc("Country", value, dispatch)}>{value}</p>
+                    return <p key={index} className="px-2 py-2 hover:bg-[#F2F2F2] cursor-pointer rounded-lg" onClick={() => selectFunc(2, value, dispatch)}>{value}</p>
                 })}
             </div>
         </div>
