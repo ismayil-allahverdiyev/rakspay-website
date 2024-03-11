@@ -2,9 +2,10 @@ import { InfoRow } from "../components/info_row_component";
 import GreenTransactionTriangle from "../../../assets/images/green-transaction-triangle.svg";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import createUniqueShortId, { AppDispatch, getTransactionRate, transactionActions, useAppSelector } from "../store";
-import { v4 as uuidv4 } from 'uuid';
+import { AppDispatch, transactionActions, useAppSelector } from "../store";
 import { useTranslation } from "react-i18next";
+import { getTransactionRate } from "../services/transaction_service";
+import createUniqueShortId from "../utils/id_generator";
 
 export default function Receipt() {
 

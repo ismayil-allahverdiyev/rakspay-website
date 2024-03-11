@@ -1,28 +1,8 @@
-import { createSlice, configureStore, createAsyncThunk } from "@reduxjs/toolkit";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
-import { firestore } from "../../../config/firebase/fbConfig";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import { ToastOptions, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-interface ITransaction {
-    selectedFromCountry: string,
-    listOfCountries: string[],
-    selectedToCountry: string,
-    selectedCurrency: string,
-    listOfCurrencies: string[],
-    totalAmount: number,
-    amount: number,
-    email: string,
-    number: string,
-    currencyInfo: CurrencyInfo,
-    isFromCountryOpen: boolean,
-    isToCountryOpen: boolean,
-    isCurrencyOpen: boolean,
-    isCountryOpen: boolean,
-    id: string,
-    phoneCode: string,
-}
+import createUniqueShortId from "../utils/id_generator";
+import { ITransaction } from "./interfaces/transaction";
 
 const transactionSlice = createSlice({
     name: 'transaction',
@@ -129,140 +109,9 @@ const transactionSlice = createSlice({
     }
 })
 
-var styles = {
-    autoClose: 3000, //3 seconds
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    position: "top-center",
-} as ToastOptions
-
-function successToast(title: string, message?: string) {
-    toast.success(
-        <div>
-            <p className="font-bold text-black">
-                {title}
-            </p>
-            <p className="font-semibold text-gray-700">
-                {message}
-            </p>
-        </div>,
-        styles,
-    );
-}
-
-function errorToast(title: string, message?: string) {
-    toast.error(
-        <div>
-            <p className="font-bold text-black">
-                {title}
-            </p>
-            <p className="font-semibold text-gray-700">
-                {message}
-            </p>
-        </div>,
-        styles,
-    );
-}
-
 function setTotalAmount(state: ITransaction) {
     state.totalAmount = parseFloat((state.amount * (state.selectedCurrency == 'TL' ? state.currencyInfo.tl_to_usd : state.currencyInfo.usd_to_tl)).toFixed(2));
 }
-
-interface CurrencyInfo {
-    tl_to_usd: number,
-    usd_to_tl: number,
-}
-
-export const getTransactionRate = createAsyncThunk(
-    'transaction/getTransactionRate',
-    async (dispatch: AppDispatch) => {
-        console.log('getTransactionRate');
-        const getCurrencyInfo = async () => {
-
-            const currencyInfo = doc(firestore, 'general', 'currency_info');
-            const data = await getDoc(currencyInfo);
-            var res = data.data() as CurrencyInfo;
-            return res;
-        }
-
-        try {
-            var response = await getCurrencyInfo();
-            console.log(response)
-            dispatch(transactionActions.setCurrencyRate(response));
-        }
-        catch (error) {
-            toast("Error getting currency info");
-        }
-    },
-)
-
-interface SendTransaction {
-    email: string,
-    number: string,
-    getState: () => RootState,
-    dispatch: AppDispatch,
-}
-
-export const sendTransaction = createAsyncThunk(
-    'transaction/sendTransaction',
-    async (props: SendTransaction) => {
-        console.log("Transaction submitted to " + props.email + " with number " + props.number);
-        props.dispatch(transactionActions.setEmail(props.email));
-        props.dispatch(transactionActions.setNumber(props.number));
-
-        var appInfo = props.getState().transaction;
-
-        console.log("Sending transaction with id " + appInfo.id);
-
-        if (appInfo.amount == 0 || appInfo.email == '' || appInfo.number == '') {
-            errorToast("Please fill in all the fields!")
-            return;
-        }
-
-        var transaction = {
-            id: appInfo.id,
-            fromCountry: appInfo.selectedFromCountry,
-            toCountry: appInfo.selectedToCountry,
-            currency: appInfo.selectedCurrency,
-            requestedAmount: appInfo.amount,
-            totalAmount: appInfo.totalAmount,
-            email: appInfo.email,
-            number: appInfo.number,
-            phoneCode: appInfo.phoneCode,
-            date: Date.now(),
-        }
-
-        const sendTransaction = async () => {
-            const transactionRef = collection(firestore, 'transactions');
-            const docRef = doc(transactionRef, transaction.id);
-            console.log("Transactionn yeah");
-
-            try {
-                await setDoc(docRef, transaction);
-                return true;
-            } catch (error) {
-                console.log(error);
-                return false;
-            }
-        }
-
-        try {
-            var response = await sendTransaction();
-
-            if (response) {
-                props.dispatch(transactionActions.resetPage());
-                successToast("Transaction successful!", "We will contact you soon!");
-            } else {
-                errorToast("Transaction failed!")
-            }
-        }
-        catch (error) {
-            errorToast("Transaction failed!")
-        }
-    }
-)
 
 export const TransactionStore = configureStore({
     reducer: {
@@ -303,44 +152,3 @@ export const selectFunc = (title: string, value: string, dispatch: AppDispatch) 
 export const setAmount = (value: number, dispatch: AppDispatch) => {
     dispatch(transactionActions.setAmount(value));
 }
-
-function generateUniqueId() {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    let result = '';
-    for (let i = 0; i < 6; i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-}
-
-export default function createUniqueShortId() {
-    const timestamp = Date.now().toString(36);
-    const randomChars = generateUniqueId();
-
-    const uniqueId = timestamp + randomChars;
-    return uniqueId;
-}
-
-export const countryCodes = [
-    "+93", "+355", "+213", "+376", "+244", "+1-268", "+54", "+374", "+61", "+43",
-    "+994", "+1-242", "+973", "+880", "+1-246", "+375", "+32", "+501", "+229",
-    "+975", "+591", "+387", "+267", "+55", "+673", "+359", "+226", "+257", "+238",
-    "+855", "+237", "+1", "+236", "+235", "+56", "+86", "+57", "+269", "+242",
-    "+506", "+385", "+53", "+357", "+420", "+45", "+253", "+1-767", "+1-809, +1-829, +1-849",
-    "+670", "+593", "+20", "+503", "+240", "+291", "+372", "+268", "+251", "+679",
-    "+358", "+33", "+241", "+220", "+995", "+49", "+233", "+30", "+1-473", "+502",
-    "+224", "+245", "+592", "+509", "+504", "+36", "+354", "+91", "+62", "+98",
-    "+964", "+353", "+972", "+39", "+225", "+1-876", "+81", "+962", "+7", "+254",
-    "+686", "+383", "+965", "+996", "+856", "+371", "+961", "+266", "+231", "+218",
-    "+423", "+370", "+352", "+261", "+265", "+60", "+960", "+223", "+356", "+692",
-    "+222", "+230", "+52", "+691", "+373", "+377", "+976", "+382", "+212", "+258",
-    "+95", "+264", "+674", "+977", "+31", "+64", "+505", "+227", "+234", "+850",
-    "+389", "+47", "+968", "+92", "+680", "+970", "+507", "+675", "+595", "+51",
-    "+63", "+48", "+351", "+974", "+40", "+7", "+250", "+1-869", "+1-758", "+1-784",
-    "+685", "+378", "+239", "+966", "+221", "+381", "+248", "+232", "+65", "+421",
-    "+386", "+677", "+252", "+27", "+82", "+211", "+34", "+94", "+249", "+597",
-    "+46", "+41", "+963", "+886", "+992", "+255", "+66", "+228", "+676", "+1-868",
-    "+216", "+90", "+993", "+688", "+256", "+380", "+971", "+44", "+1", "+598",
-    "+998", "+678", "+379", "+58", "+84", "+967", "+260", "+263"
-];

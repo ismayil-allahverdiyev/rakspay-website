@@ -8,8 +8,9 @@ import GreyTransactionTriangle from "../../../assets/images/grey-transaction-tri
 import Receipt from "./receipt_feature";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch, sendTransaction, TransactionStore } from "../store";
+import { AppDispatch, TransactionStore } from "../store";
 import { useTranslation } from "react-i18next";
+import { sendTransaction } from "../services/transaction_service";
 
 export default function MainTransactionFeature() {
 
@@ -39,7 +40,6 @@ export default function MainTransactionFeature() {
                 title={t("transaction.send_message")}
                 style="absolute right-[5%] bottom-[5%]"
                 onclick={() => {
-                    console.log("sendTransaction")
                     dispatch(sendTransaction({ dispatch: dispatch, email: emailRef.current?.value ?? "", number: numberRef.current?.value ?? "", getState: TransactionStore.getState }))
                 }}
             />

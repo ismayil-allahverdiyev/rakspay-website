@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
-import { AppDispatch, countryCodes, selectFunc, transactionActions, useAppSelector } from "../store";
+import { AppDispatch, selectFunc, transactionActions, useAppSelector } from "../store";
 import { useDispatch } from "react-redux";
+import { countryCodes } from "../utils/country_codes";
 
 interface PhoneCodeComponentProps {
     numberRef: React.RefObject<HTMLInputElement>;

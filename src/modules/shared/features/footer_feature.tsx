@@ -9,9 +9,9 @@ export default function FooterFeature() {
     return <div className="px-8 pt-8 w-full bg-primary relative">
         <p className="lg:text-7xl md:text-5xl text-4xl font-title font-bold pb-8">Raks<span className="font-normal">pay</span></p>
         <div className="flex flex-col lg:text-2xl sm:text-xl text-lg space-y-2 font-medium ml-1">
-            <Link to="/">{t("nav.about")}</Link>
-            <Link to="/transaction">{t("nav.transaction")}</Link>
-            <Link to="/reviews">{t("nav.reviews")}</Link>
+            <Link to="/" onClick={() => window.scrollTo(0, 0)}>{t("nav.about")}</Link>
+            <Link to="/transaction" onClick={() => window.scrollTo(0, 0)}>{t("nav.transaction")}</Link>
+            <Link to="/reviews" onClick={() => window.scrollTo(0, 0)}>{t("nav.reviews")}</Link>
         </div>
         <div className="md:mt-56 mt-16 w-full mx-2 h-[1px] bg-white" />
         <div className="flex justify-end items-center py-2 pr-2">
