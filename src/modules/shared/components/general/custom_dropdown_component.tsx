@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import IconMenuDown from "../../../../assets/icons/icon-menu-down.svg";
 import { AppDispatch, openClose, selectFunc, transactionActions, useAppSelector } from "../../../transaction/store";
-import { Ref } from "react";
+import { Ref, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ICustomDropdownComponentProps {
     title: string;
@@ -9,12 +10,18 @@ interface ICustomDropdownComponentProps {
     values: string[];
     selectedValue?: string;
     style?: string;
+    isOn?: boolean;
 }
 
 export default function CustomDropdownComponent(props: ICustomDropdownComponentProps) {
     const isOn = useAppSelector((state) => props.title == "From" ? state.transaction.isFromCountryOpen : props.title == "To" ? state.transaction.isToCountryOpen : state.transaction.isCurrencyOpen);
 
     const dispatch = useDispatch<AppDispatch>();
+    var language = useTranslation("global").i18n.language;
+
+    useEffect(() => {
+        console.log("Language changed");
+    }, [language]);
 
     return <div className="md:w-[45%] w-full font-bold relative text-black">
         <div>
