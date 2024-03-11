@@ -25,20 +25,20 @@ export default function MainTransactionFeature() {
         <div className="flex-col w-[30%] items-center lg:flex hidden px-4">
             <Receipt />
         </div>
-        <div className="lg:w-[70%] w-full h-full bg-[#1E1E1E] lg:rounded-r-xl lg:rounded-l-none rounded-xl bg-opacity-70 px-12 overflow-y-scroll no-scrollbar relative z-10">
+        <div className="lg:w-[70%] w-full h-full bg-[#1E1E1E] lg:rounded-r-xl lg:rounded-l-none rounded-xl bg-opacity-70 px-12 overflow-y-scroll no-scrollbar">
             <TitleComponent />
             <CountrySelectorFeature />
             <AmountFeature />
             <ContactInfoFeature emailRef={emailRef} numberRef={numberRef} />
             <ExplanationComponent />
             <img src={GreyTransactionTriangle} alt="" className="absolute right-[25%] bottom-[35%] z-0 lg:flex hidden" />
-            <div className="flex-col w-full items-center lg:hidden flex px-4">
+            <div className="flex-col w-full items-center lg:hidden flex px-0">
                 <Receipt />
             </div>
             <div className="h-32" />
             <CustomButtonComponent
                 title={t("transaction.send_message")}
-                style="absolute right-[5%] bottom-[5%]"
+                style="absolute right-[5%] bottom-[5%] z-50"
                 onclick={() => {
                     dispatch(sendTransaction({ dispatch: dispatch, email: emailRef.current?.value ?? "", number: numberRef.current?.value ?? "", getState: TransactionStore.getState }))
                 }}
