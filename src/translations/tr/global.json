@@ -1,0 +1,68 @@
+{
+    "home": {
+        "about_title": "Zahmetsiz ve Güvenilir Para Transferleri",
+        "about_body": "Yılların uzmanlığıyla desteklenen Sağlam Güvenlik ile Sorunsuz Para Akışının kolaylığını yaşayın.",
+        "details": {
+            "title": "Rakspay, yılların uzmanlığıyla desteklenen hızlı, güvenli finansal işlemleri garanti eder.",
+            "detail_1_1": "2 yıllık",
+            "detail_1_2": "deneyim",
+            "detail_1_3": "",
+            "detail_2_1": "Düşük",
+            "detail_2_2": "işlem",
+            "detail_2_3": "oranı",
+            "detail_3_1": "1 saat",
+            "detail_3_2": "yanıt süresi"
+        },
+        "why_us": "NEDEN BİZ?"
+    },
+    "transaction": {
+        "title": {
+            "part_1": "Para",
+            "part_2": " işlemleri artık",
+            "part_3": "çok ",
+            "part_4": "kolay!"
+        },
+        "receipt": {
+            "title": "Makbuz",
+            "requested_amount": "Istenen miktar",
+            "date_time": "Tarih ve saat",
+            "transaction_id": "İşlem ID'si",
+            "receiving": "Beklenen",
+            "transaction_speed": "İşlem Hızı",
+            "hours": "saat"
+        },
+        "transaction_details": "Ödeme detayları",
+        "select_country": "Ülke seçin",
+        "from": "Nerden",
+        "to": "Nereye",
+        "amount": "Miktar",
+        "whatsapp_number": "Whatsapp numarası",
+        "email": "E-posta",
+        "message": "*  Detayları e-postanıza ve whatsapp'ınıza alacaksınız.",
+        "send_message": "Mesaj gönder"
+    },
+    "reviews": {
+        "title": {
+            "part_1": "MÜŞTERİ ",
+            "part_2": "GÜVENİ",
+            "part_3": "BİZİM",
+            "part_4": " İÇİN ",
+            "part_5": "    ÇOK ",
+            "part_6": "ÖNEMLİDİR",
+            "body": "Kapsamlı uluslararası kullanıcı geri bildirimleriyle desteklenen hizmetlerimiz, parasal işlemler için güvenli ve güvenilir bir yol sunuyor."
+        },
+        "more": "Daha fazla"
+    },
+    "nav": {
+        "reviews": "Yorumlar",
+        "transaction": "İşlem",
+        "about": "Hakkında",
+        "body": "Güvenilir ve Güvenli Para Transferlerini Zahmetsizce Kolaylaştırıyoruz",
+        "contact_us": "Bize ulaşın",
+        "bottom": "2020'den beri hizmetinizdeyiz, İstanbul"
+    },
+    "buttons": {
+        "send_now": "Şimdi gönder",
+        "swipe_down": "Aşağı kay"
+    }
+}

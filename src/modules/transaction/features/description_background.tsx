@@ -5,7 +5,7 @@ import { TransactionStore } from '../store';
 
 export default function DescriptionBackground({ children }: any) {
 
-    return <Provider store={TransactionStore}>
+    return <div>
         <div className="flex flex-col h-screen w-full bg-black text-white relative overflow-hidden">
             <img src={GreyTriangle} alt="" className='rotate-[-10deg] absolute -left-[10%] -bottom-[5%]' />
             <img src={GreenTriangle} alt="" className='rotate-[-10deg] scale-[2] absolute -right-[2%] bottom-[20%]' />
@@ -13,5 +13,5 @@ export default function DescriptionBackground({ children }: any) {
                 {children}
             </div>
         </div>
-    </Provider>
+    </div>
 }

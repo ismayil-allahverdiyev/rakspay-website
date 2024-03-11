@@ -9,6 +9,7 @@ import Receipt from "./receipt_feature";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, sendTransaction, TransactionStore } from "../store";
+import { useTranslation } from "react-i18next";
 
 export default function MainTransactionFeature() {
 
@@ -16,6 +17,8 @@ export default function MainTransactionFeature() {
     var emailRef = useRef<HTMLInputElement>(null);
 
     var dispatch = useDispatch<AppDispatch>();
+
+    var t = useTranslation("global").t;
 
     return <div className="flex justify-end flex-grow bg-[#4F4F4F] bg-opacity-25 2xl:w-[60%] xl:w-[65%] lg:w-[70%] md:w-[75%] sm:w-[80%] w-[85%]  mx-auto mb-24 mt-8 rounded-xl shadow-[4.0px_4.0px_4.0px_rgba(255,255,255,0.02)] overflow-hidden lg:flex-row flex-col-reverse relative">
         <div className="flex-col w-[30%] items-center lg:flex hidden px-4">
@@ -33,7 +36,7 @@ export default function MainTransactionFeature() {
             </div>
             <div className="h-32" />
             <CustomButtonComponent
-                title="Send message"
+                title={t("transaction.send_message")}
                 style="absolute right-[5%] bottom-[5%]"
                 onclick={() => {
                     console.log("sendTransaction")

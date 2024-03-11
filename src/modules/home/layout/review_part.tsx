@@ -2,6 +2,7 @@ import ReviewGreyTriangle from '../../../assets/images/review-grey-triangle.svg'
 import GreenTriangle from '../../../assets/images/green-triangle.svg';
 import ReviewFeature from "../features/review_feature";
 import CustomButtonComponent from '../../shared/components/general/custom_button_component';
+import { useTranslation } from 'react-i18next';
 
 export default function ReviewPart() {
     return <div className='relative overflow-clip pb-6'>
@@ -27,7 +28,9 @@ interface WhyUsPartProps {
 }
 
 function WhyUsPart(props: WhyUsPartProps) {
+    const t = useTranslation("global").t;
+
     return <p className={`my-4 mb-8 2xl:text-9xl xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-4xl text-primary text-center font-title font-extrabold tracking-[1.5rem] drop-shadow-[8px_4px_var(--tw-shadow-color)] shadow-gray-500 ${props.style}`}>
-        WHY US?
+        {t("home.why_us")}
     </p>
 }

@@ -1,9 +1,9 @@
 import { createSlice, configureStore, createAsyncThunk } from "@reduxjs/toolkit";
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { firestore } from "../../../config/firebase/fbConfig";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { act } from "react-dom/test-utils";
-import { set } from "firebase/database";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { ToastOptions, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ITransaction {
     selectedFromCountry: string,
@@ -129,6 +129,43 @@ const transactionSlice = createSlice({
     }
 })
 
+var styles = {
+    autoClose: 3000, //3 seconds
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    position: "top-center",
+} as ToastOptions
+
+function successToast(title: string, message?: string) {
+    toast.success(
+        <div>
+            <p className="font-bold text-black">
+                {title}
+            </p>
+            <p className="font-semibold text-gray-700">
+                {message}
+            </p>
+        </div>,
+        styles,
+    );
+}
+
+function errorToast(title: string, message?: string) {
+    toast.error(
+        <div>
+            <p className="font-bold text-black">
+                {title}
+            </p>
+            <p className="font-semibold text-gray-700">
+                {message}
+            </p>
+        </div>,
+        styles,
+    );
+}
+
 function setTotalAmount(state: ITransaction) {
     state.totalAmount = parseFloat((state.amount * (state.selectedCurrency == 'TL' ? state.currencyInfo.tl_to_usd : state.currencyInfo.usd_to_tl)).toFixed(2));
 }
@@ -156,7 +193,7 @@ export const getTransactionRate = createAsyncThunk(
             dispatch(transactionActions.setCurrencyRate(response));
         }
         catch (error) {
-            console.log(error);
+            toast("Error getting currency info");
         }
     },
 )
@@ -180,10 +217,9 @@ export const sendTransaction = createAsyncThunk(
         console.log("Sending transaction with id " + appInfo.id);
 
         if (appInfo.amount == 0 || appInfo.email == '' || appInfo.number == '') {
+            errorToast("Please fill in all the fields!")
             return;
         }
-
-        console.log("Transactionn");
 
         var transaction = {
             id: appInfo.id,
@@ -198,9 +234,6 @@ export const sendTransaction = createAsyncThunk(
             date: Date.now(),
         }
 
-        console.log("Transactionn2");
-
-
         const sendTransaction = async () => {
             const transactionRef = collection(firestore, 'transactions');
             const docRef = doc(transactionRef, transaction.id);
@@ -208,8 +241,6 @@ export const sendTransaction = createAsyncThunk(
 
             try {
                 await setDoc(docRef, transaction);
-                console.log("Transactionn yeah2");
-
                 return true;
             } catch (error) {
                 console.log(error);
@@ -218,20 +249,17 @@ export const sendTransaction = createAsyncThunk(
         }
 
         try {
-            console.log("Transactionn yeah3");
-
             var response = await sendTransaction();
-            console.log("Transactionn yeah4");
 
             if (response) {
-                console.log("Transaction sent successfully");
                 props.dispatch(transactionActions.resetPage());
+                successToast("Transaction successful!", "We will contact you soon!");
             } else {
-                console.log("Transaction failed");
+                errorToast("Transaction failed!")
             }
         }
         catch (error) {
-            console.log(error);
+            errorToast("Transaction failed!")
         }
     }
 )
@@ -275,17 +303,6 @@ export const selectFunc = (title: string, value: string, dispatch: AppDispatch) 
 export const setAmount = (value: number, dispatch: AppDispatch) => {
     dispatch(transactionActions.setAmount(value));
 }
-
-// export const submitTransaction = (email: string, number: string, dispatch: AppDispatch) => {
-//     console.log("Transaction submitted to " + email + " with number " + number);
-
-//     dispatch(transactionActions.setEmail(email));
-//     dispatch(transactionActions.setNumber(number));
-
-//     console.log("Sending transaction")
-//     sendTransaction(dispatch);
-//     console.log("Transaction sent");
-// }
 
 function generateUniqueId() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

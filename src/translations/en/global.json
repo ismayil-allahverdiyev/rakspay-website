@@ -1,0 +1,68 @@
+{
+    "home": {
+        "about_title": "Effortless and Reliable Money Transfers",
+        "about_body": "Experience the ease of Smooth Money Flow with Solid Security, backed by our years of expertise.",
+        "details": {
+            "title": "Rakspay assures swift, secure financial transactions, backed by years of expertise.",
+            "detail_1_1": "2 years",
+            "detail_1_2": "of",
+            "detail_1_3": "experience",
+            "detail_2_1": "Low",
+            "detail_2_2": "transaction",
+            "detail_2_3": "rate",
+            "detail_3_1": "1 hour",
+            "detail_3_2": "response time"
+        },
+        "why_us": "WHY US?"
+    },
+    "transaction": {
+        "title": {
+            "part_1": "Money",
+            "part_2": " transaction",
+            "part_3": "made ",
+            "part_4": "easy!"
+        },
+        "receipt": {
+            "title": "Receipt",
+            "requested_amount": "Requested amount",
+            "date_time": "Date and time",
+            "transaction_id": "Transaction ID",
+            "receiving": "Receiving",
+            "transaction_speed": "Transaction Speed",
+            "hours": "hours"
+        },
+        "transaction_details": "Transaction details",
+        "select_country": "Select country",
+        "from": "From",
+        "to": "To",
+        "amount": "Amount",
+        "whatsapp_number": "Whatsapp number",
+        "email": "E-mail",
+        "message": "*  You will receive the details on your email and whatsapp.",
+        "send_message": "Send message"
+    },
+    "reviews": {
+        "title": {
+            "part_1": "CUSTOMER ",
+            "part_2": "TRUST",
+            "part_3": "CRUCIAL",
+            "part_4": " FOR",
+            "part_5": "    MONEY ",
+            "part_6": "SERVICES",
+            "body": "Backed by extensive international user feedback, our services offer a secure and dependable avenue for monetary transactions."
+        },
+        "more": "More"
+    },
+    "nav": {
+        "reviews": "Reviews",
+        "transaction": "Transaction",
+        "about": "About",
+        "body": "Effortlessly Facilitating Reliable and Secure Money Transfers",
+        "contact_us": "Contact us",
+        "bottom": "Since 2020 at your service, Istanbul"
+    },
+    "buttons": {
+        "send_now": "Send now",
+        "swipe_down": "Swipe\ndown"
+    }
+}
