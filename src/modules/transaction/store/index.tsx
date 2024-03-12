@@ -13,11 +13,11 @@ const transactionSlice = createSlice({
         isToCountryOpen: false,
         isCurrencyOpen: false,
         number: '',
-        selectedCurrency: 'TL',
-        listOfCurrencies: ['USD', 'TL'],
-        selectedFromCountry: 'Somalia',
-        listOfCountries: ['Somalia', 'Turkey'],
-        selectedToCountry: 'Turkey',
+        selectedCurrency: "TL",
+        listOfCurrencies: ["TL", "USD", "KES", "TZS", "UGS"],
+        selectedFromCountry: 'Kenya',
+        listOfCountries: ["Turkey", "Kenya", "Tanzania", "Uganda"],
+        selectedToCountry: "Turkey",
         email: '',
         currencyInfo: {},
         isCountryOpen: false,
@@ -111,7 +111,18 @@ const transactionSlice = createSlice({
 })
 
 function setTotalAmount(state: ITransaction) {
-    state.totalAmount = parseFloat((state.amount * (state.selectedCurrency == 'TL' ? state.currencyInfo.tl_to_usd : state.currencyInfo.usd_to_tl)).toFixed(2));
+    var unit = 1;
+    if (state.selectedCurrency == 'TL') {
+        unit = state.currencyInfo.tl_to_usd;
+    } else if (state.selectedCurrency == 'KES') {
+        unit = state.currencyInfo.kes_to_usd;
+    } else if (state.selectedCurrency == 'TZS') {
+        unit = state.currencyInfo.tzs_to_usd;
+    } else if (state.selectedCurrency == 'UGS') {
+        unit = state.currencyInfo.ugs_to_usd;
+    }
+
+    state.totalAmount = parseFloat((state.amount * unit).toFixed(2));
 }
 
 export const TransactionStore = configureStore({

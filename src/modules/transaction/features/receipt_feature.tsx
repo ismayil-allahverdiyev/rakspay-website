@@ -39,7 +39,7 @@ export default function Receipt() {
         <InfoRow title={t("transaction.receipt.date_time")} value={Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', }).format(Date.now())}></InfoRow>
         <div className="w-full border-white border-2 border-dotted " />
         <p className="font-bold xl:text-2xl lg:text-xl text-lg my-4">
-            1 {selectedCurrency} = {currencyInfo[selectedCurrency == "TL" ? "tl_to_usd" : "usd_to_tl"]} {selectedCurrency == "TL" ? "USD" : "TL"}
+            1 {selectedCurrency} = {currencyInfo[selectedCurrency == "TL" ? "tl_to_usd" : selectedCurrency == "KES" ? "kes_to_usd" : selectedCurrency == "TZS" ? "tzs_to_usd" : "ugs_to_usd"]} USD
         </p>
         <InfoRow title={t("transaction.receipt.requested_amount")} value={`${amount ? amount : 0} ${selectedCurrency}`}></InfoRow>
         <div className="w-full border-white border-2 border-dotted " />

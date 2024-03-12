@@ -20,7 +20,7 @@ const menuSlice = createSlice({
 
 export const GeneralStore = configureStore({
     reducer: {
-        translation: menuSlice.reducer,
+        menu: menuSlice.reducer,
     },
 });
 
