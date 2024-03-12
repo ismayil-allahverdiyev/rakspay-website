@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 import 'react-toastify/dist/ReactToastify.css';
 import createUniqueShortId from "../utils/id_generator";
 import { ITransaction } from "./interfaces/transaction";
+import { getCurrency } from "../features/receipt_feature";
 
 const transactionSlice = createSlice({
     name: 'transaction',
@@ -13,8 +14,8 @@ const transactionSlice = createSlice({
         isToCountryOpen: false,
         isCurrencyOpen: false,
         number: '',
-        selectedCurrency: "TL",
-        listOfCurrencies: ["TL", "USD", "KES", "TZS", "UGS"],
+        selectedCurrency: "KES",
+        listOfCurrencies: ["TL", "USD", "KES", "TZS", "UGX"],
         selectedFromCountry: 'Kenya',
         listOfCountries: ["Turkey", "Kenya", "Tanzania", "Uganda"],
         selectedToCountry: "Turkey",
@@ -102,8 +103,8 @@ const transactionSlice = createSlice({
             state.isCurrencyOpen = false;
             state.isFromCountryOpen = false;
             state.isToCountryOpen = false;
-            state.selectedCurrency = 'TL';
-            state.selectedFromCountry = 'Somalia';
+            state.selectedCurrency = 'KES';
+            state.selectedFromCountry = 'Kenya';
             state.selectedToCountry = 'Turkey';
             state.phoneCode = '+90';
         }
@@ -113,13 +114,13 @@ const transactionSlice = createSlice({
 function setTotalAmount(state: ITransaction) {
     var unit = 1;
     if (state.selectedCurrency == 'TL') {
-        unit = state.currencyInfo.tl_to_usd;
+        unit = (state.currencyInfo as any)[`tl_to_${getCurrency(state.selectedCurrency, state.selectedFromCountry, state.selectedToCountry)}`];
     } else if (state.selectedCurrency == 'KES') {
-        unit = state.currencyInfo.kes_to_usd;
+        unit = state.currencyInfo.kes_to_tl;
     } else if (state.selectedCurrency == 'TZS') {
-        unit = state.currencyInfo.tzs_to_usd;
-    } else if (state.selectedCurrency == 'UGS') {
-        unit = state.currencyInfo.ugs_to_usd;
+        unit = state.currencyInfo.tzs_to_tl;
+    } else if (state.selectedCurrency == 'UGX') {
+        unit = state.currencyInfo.ugx_to_tl;
     }
 
     state.totalAmount = parseFloat((state.amount * unit).toFixed(2));

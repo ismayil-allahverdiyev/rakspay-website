@@ -22,6 +22,8 @@ export default function Receipt() {
 
     var currencyInfo = useAppSelector(state => state.transaction.currencyInfo);
     var selectedCurrency = useAppSelector(state => state.transaction.selectedCurrency);
+    var selectedFromCountry = useAppSelector(state => state.transaction.selectedFromCountry);
+    var selectedToCountry = useAppSelector(state => state.transaction.selectedToCountry);
     var totalAmount = useAppSelector(state => state.transaction.totalAmount);
     var amount = useAppSelector(state => state.transaction.amount);
     var id = useAppSelector(state => state.transaction.id);
@@ -39,16 +41,29 @@ export default function Receipt() {
         <InfoRow title={t("transaction.receipt.date_time")} value={Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', }).format(Date.now())}></InfoRow>
         <div className="w-full border-white border-2 border-dotted " />
         <p className="font-bold xl:text-2xl lg:text-xl text-lg my-4">
-            1 {selectedCurrency} = {currencyInfo[selectedCurrency == "TL" ? "tl_to_usd" : selectedCurrency == "KES" ? "kes_to_usd" : selectedCurrency == "TZS" ? "tzs_to_usd" : "ugs_to_usd"]} USD
+            1 {selectedCurrency} = {(currencyInfo as any)[getCurrencyInfo(selectedCurrency, selectedFromCountry, selectedToCountry)]} {getCurrency(selectedCurrency, selectedFromCountry, selectedToCountry)}
         </p>
         <InfoRow title={t("transaction.receipt.requested_amount")} value={`${amount ? amount : 0} ${selectedCurrency}`}></InfoRow>
         <div className="w-full border-white border-2 border-dotted " />
         <p className="font-bold xl:text-2xl lg:text-xl text-lg my-4">
             {t("transaction.receipt.receiving")}
         </p>
-        <InfoRow title={t("transaction.receipt.transaction_speed")} value="1 - 8 hours"></InfoRow>
+        <InfoRow title={t("transaction.receipt.transaction_speed")} value={t("transaction.receipt.time")}></InfoRow>
         <p className="xl:text-4xl lg:text-3xl md:text-2xl text-xl font-extrabold my-auto text-center">
-            {`${totalAmount ? totalAmount : 0} ${selectedCurrency == "TL" ? "USD" : "TL"}`}
+            {`${totalAmount ? totalAmount : 0} ${selectedCurrency == "TL" ? (getCurrency(selectedCurrency, selectedFromCountry, selectedToCountry)) : "TL"}`}
         </p>
+        <p className="font-bold py-4">{t("transaction.receipt.comission_is_exclusive")}</p>
+
     </>
+}
+
+export function getCurrency(selectedCurrency: string, selectedFromCountry: string, selectedToCountry: string) {
+    return (selectedFromCountry == "Tanzania" || selectedToCountry == "Tanzania") && selectedCurrency == "TL" ? "TZS" : (selectedFromCountry == "Uganda" || selectedToCountry == "Uganda") && selectedCurrency == "TL" ? "UGX" : (selectedFromCountry == "Kenya" || selectedToCountry == "Kenya") && selectedCurrency == "TL" ? "KES" : "TL";
+}
+
+export function getCurrencyInfo(selectedCurrency: string, selectedFromCountry: string, selectedToCountry: string) {
+    var currency = (selectedFromCountry == "Tanzania" || selectedToCountry == "Tanzania") ? "TZS" : (selectedFromCountry == "Uganda" || selectedToCountry == "Uganda") ? "UGX" : (selectedFromCountry == "Kenya" || selectedToCountry == "Kenya") ? "KES" : "TL";
+    var res = selectedCurrency != "TL" ? (currency + "_to_tl") : ("tl_to_" + currency)
+    if (selectedCurrency != "TL") res = selectedCurrency.toLowerCase() + "_to_tl";
+    return res.toLowerCase();
 }

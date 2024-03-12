@@ -29,7 +29,8 @@
             "transaction_id": "İşlem ID'si",
             "receiving": "Beklenen",
             "transaction_speed": "İşlem Hızı",
-            "hours": "saat"
+            "comission_is_exclusive": "Transaction fee is not inclusive!",
+            "time": "30 dakika - 1 saat"
         },
         "transaction_details": "Ödeme detayları",
         "select_country": "Ülke seçin",

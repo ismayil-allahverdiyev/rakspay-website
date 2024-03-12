@@ -29,7 +29,8 @@
             "transaction_id": "Transaction ID",
             "receiving": "Receiving",
             "transaction_speed": "Transaction Speed",
-            "hours": "hours"
+            "comission_is_exclusive": "Transaction fee is not inclusive!",
+            "time": "30 mins - 1 hour"
         },
         "transaction_details": "Transaction details",
         "select_country": "Select country",

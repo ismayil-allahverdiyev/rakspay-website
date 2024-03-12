@@ -26,7 +26,7 @@ export default function AmountFeature() {
             </p>
             <div className="flex flex-row items-center">
                 <input ref={amountRef} type="number" className="px-2 py-4 outline-none bg-white rounded-lg relative z-10 w-32 mr-6" onChange={value => setAmount(value.target.valueAsNumber, dispatch)} />
-                <CustomDropdownComponent placeholder="TL" title="" values={["TL", "KES", "TZS", "UGS"]} selectedValue={selectedCurrency} style="w-24" id={3} />
+                <CustomDropdownComponent placeholder="TL" title="" values={["TL", "KES", "TZS", "UGX"]} selectedValue={selectedCurrency} style="w-24" id={3} />
             </div>
         </div>
     </div>
