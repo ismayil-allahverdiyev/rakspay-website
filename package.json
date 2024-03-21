@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.2.1",
     "@types/uuid": "^9.0.8",
     "firebase": "^10.8.0",
+    "framer-motion": "^11.0.12",
     "i18next": "^23.10.1",
     "random-int": "^3.0.0",
     "react": "^18.2.0",
