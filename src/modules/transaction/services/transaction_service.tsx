@@ -4,6 +4,8 @@ import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { firestore } from "../../../config/firebase/fbConfig";
 import { errorToast, successToast } from "../../shared/hooks/custom_toast";
 import { CurrencyInfo } from "../store/interfaces/currency_info";
+import axios from "axios";
+
 
 export const getTransactionRate = createAsyncThunk(
     'transaction/getTransactionRate',
@@ -33,6 +35,7 @@ interface SendTransaction {
     getState: () => RootState,
     dispatch: AppDispatch,
 }
+
 
 export const sendTransaction = createAsyncThunk(
     'transaction/sendTransaction',
@@ -82,6 +85,11 @@ export const sendTransaction = createAsyncThunk(
 
             if (response) {
                 props.dispatch(transactionActions.resetPage());
+                await axios.post("http://localhost:3030/api/send", {
+                    subject: "Transaction",
+                    message: "Transaction with id " + appInfo.id + " has been submitted!",
+                },);
+                alert("Email sent!");
                 successToast("Transaction successful!", "We will contact you soon!");
             } else {
                 errorToast("Transaction failed!")

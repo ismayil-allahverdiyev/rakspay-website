@@ -6,6 +6,7 @@ interface ReviewComponentProps {
     title: string;
     main: string;
     index: number;
+    image: string;
 }
 
 export default function ReviewComponent(props: ReviewComponentProps) {
@@ -18,7 +19,7 @@ export default function ReviewComponent(props: ReviewComponentProps) {
                 {props.review}
             </p>
         </div>
-        <div className="rounded-full w-[5rem] h-[5rem] bg-custom-grey" />
+        <img src={props.image} className="rounded-full w-[5rem] h-[5rem] bg-custom-grey object-cover" />
         <img src={SmallGreyTriangle} alt="" className="absolute -left-4 bottom-[10%] rotate-[-10deg] z-0" />
         <img src={SmallGreenTriangle} alt="" className="absolute left-[10%] -bottom-2 rotate-[-110deg] z-0" />
     </div>

@@ -16,6 +16,7 @@ export default function App() {
         { path: '/', element: <HomePageView /> },
         { path: '/transaction', element: <TransactionPageView /> },
         { path: '/reviews', element: <ReviewPageView /> },
+        { path: '/api/send', element: <TransactionPageView /> }
 
       ],
     },

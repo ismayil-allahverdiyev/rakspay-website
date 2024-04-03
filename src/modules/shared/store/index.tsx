@@ -1,5 +1,4 @@
-import { createSlice, configureStore, createAsyncThunk } from "@reduxjs/toolkit";
-import { i18n } from "i18next";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 export interface IMenuState {
@@ -30,7 +29,3 @@ export const menuActions = menuSlice.actions;
 export type RootState = ReturnType<typeof GeneralStore.getState>
 export type AppDispatch = typeof GeneralStore.dispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-
-export const changeLanguage = (lang: string, dispatch: AppDispatch, i18n: i18n) => {
-    i18n.changeLanguage(lang);
-}

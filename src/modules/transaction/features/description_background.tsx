@@ -1,7 +1,5 @@
 import GreyTriangle from '../../../assets/images/grey-triangle.svg';
 import GreenTriangle from '../../../assets/images/green-triangle.svg';
-import { Provider } from 'react-redux';
-import { TransactionStore } from '../store';
 
 export default function DescriptionBackground({ children }: any) {
 

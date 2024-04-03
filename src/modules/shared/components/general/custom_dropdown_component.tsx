@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import IconMenuDown from "../../../../assets/icons/icon-menu-down.svg";
-import { AppDispatch, openClose, selectFunc, transactionActions, useAppSelector } from "../../../transaction/store";
-import { Ref, useEffect } from "react";
+import { AppDispatch, openClose, selectFunc, useAppSelector } from "../../../transaction/store";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 interface ICustomDropdownComponentProps {

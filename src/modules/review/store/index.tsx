@@ -12,6 +12,7 @@ export interface IReview {
     title: string,
     description: string,
     date: string,
+    image: string,
     id: string,
 }
 
@@ -48,6 +49,7 @@ export const getReviews = createAsyncThunk(
                 description: doc.data().description,
                 main: doc.data().main,
                 title: doc.data().title,
+                image: doc.data().image,
             } as IReview));
 
             return res;

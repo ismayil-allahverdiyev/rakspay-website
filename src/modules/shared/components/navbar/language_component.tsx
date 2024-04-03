@@ -15,9 +15,9 @@ export default function LanguageComponent() {
             <img src={TurkishFlag} alt="Turkish Flag" />
             <p className={i18n.language == "tr" ? "" : "hidden"}>Tr</p>
         </button>
-        <button className='flex space-x-2' onClick={() => i18n.changeLanguage("az")}>
+        {/* <button className='flex space-x-2' onClick={() => i18n.changeLanguage("az")}>
             <img src={TurkishFlag} alt="Turkish Flag" />
             <p className={i18n.language == "az" ? "" : "hidden"}>Az</p>
-        </button>
+        </button> */}
     </div>
 }
