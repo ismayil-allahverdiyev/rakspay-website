@@ -85,11 +85,15 @@ export const sendTransaction = createAsyncThunk(
 
             if (response) {
                 props.dispatch(transactionActions.resetPage());
-                await axios.post("http://localhost:3030/api/send", {
-                    subject: "Transaction",
-                    message: "Transaction with id " + appInfo.id + " has been submitted!",
-                },);
-                alert("Email sent!");
+                try {
+                    await axios.post("http://localhost:3030/api/send", {
+                        subject: "Transaction",
+                        message: "Transaction with id " + appInfo.id + " has been submitted!",
+                    },);
+                    alert("Email sent!");
+                } catch (error) {
+                    console.log(error);
+                }
                 successToast("Transaction successful!", "We will contact you soon!");
             } else {
                 errorToast("Transaction failed!")

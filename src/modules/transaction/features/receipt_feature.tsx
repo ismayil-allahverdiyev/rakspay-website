@@ -30,6 +30,8 @@ export default function Receipt() {
 
     var t = useTranslation("global").t;
 
+    console.log(totalAmount)
+
     return <>
         <div className="relative">
             <p className="font-title font-bold xl:text-4xl lg:text-3xl md:text-2xl text-xl mt-6 mb-2 relative z-10">
@@ -65,5 +67,6 @@ export function getCurrencyInfo(selectedCurrency: string, selectedFromCountry: s
     var currency = (selectedFromCountry == "Tanzania" || selectedToCountry == "Tanzania") ? "TZS" : (selectedFromCountry == "Uganda" || selectedToCountry == "Uganda") ? "UGX" : (selectedFromCountry == "Kenya" || selectedToCountry == "Kenya") ? "KES" : "TL";
     var res = selectedCurrency != "TL" ? (currency + "_to_tl") : ("tl_to_" + currency)
     if (selectedCurrency != "TL") res = selectedCurrency.toLowerCase() + "_to_tl";
+    console.log(res.toLowerCase());
     return res.toLowerCase();
 }

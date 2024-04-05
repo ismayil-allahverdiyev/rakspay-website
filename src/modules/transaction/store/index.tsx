@@ -114,7 +114,7 @@ const transactionSlice = createSlice({
 function setTotalAmount(state: ITransaction) {
     var unit = 1;
     if (state.selectedCurrency == 'TL') {
-        unit = (state.currencyInfo as any)[`tl_to_${getCurrency(state.selectedCurrency, state.selectedFromCountry, state.selectedToCountry)}`];
+        unit = (state.currencyInfo as any)[`tl_to_${getCurrency(state.selectedCurrency, state.selectedFromCountry, state.selectedToCountry).toLowerCase()}`];
     } else if (state.selectedCurrency == 'KES') {
         unit = state.currencyInfo.kes_to_tl;
     } else if (state.selectedCurrency == 'TZS') {
