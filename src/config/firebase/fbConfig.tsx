@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCTn5pZoqRmDw499MjtouJIbA8Tg7e7gTA",
+    apiKey: process.env.FIREBASE_API_KEY,
     authDomain: "raks-pay.firebaseapp.com",
     projectId: "raks-pay",
     storageBucket: "raks-pay.appspot.com",
-    messagingSenderId: "519628185883",
-    appId: "1:519628185883:web:1de728be6414e37407b3be",
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
     measurementId: "G-F041J8L8FX"
 };
 
