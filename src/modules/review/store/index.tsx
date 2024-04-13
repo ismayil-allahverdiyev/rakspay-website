@@ -50,6 +50,7 @@ export const getReviews = createAsyncThunk(
                 main: doc.data().main,
                 title: doc.data().title,
                 image: doc.data().image,
+
             } as IReview));
 
             return res;

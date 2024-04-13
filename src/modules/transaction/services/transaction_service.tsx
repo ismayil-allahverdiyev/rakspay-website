@@ -5,6 +5,7 @@ import { firestore } from "../../../config/firebase/fbConfig";
 import { errorToast, successToast } from "../../shared/hooks/custom_toast";
 import { CurrencyInfo } from "../store/interfaces/currency_info";
 import axios from "axios";
+import { getCurrency } from "../features/receipt_feature";
 
 
 export const getTransactionRate = createAsyncThunk(
@@ -58,11 +59,13 @@ export const sendTransaction = createAsyncThunk(
             fromCountry: appInfo.selectedFromCountry,
             toCountry: appInfo.selectedToCountry,
             currency: appInfo.selectedCurrency,
+            toCurrency: appInfo.selectedCurrency == "TL" ? (getCurrency(appInfo.selectedCurrency, appInfo.selectedFromCountry, appInfo.selectedToCountry)) : "TL",
             requestedAmount: appInfo.amount,
             totalAmount: appInfo.totalAmount,
             email: appInfo.email,
             number: appInfo.number,
             phoneCode: appInfo.phoneCode,
+
             date: Date.now(),
         }
 
