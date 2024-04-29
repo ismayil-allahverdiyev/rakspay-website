@@ -4,7 +4,7 @@ import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { firestore } from "../../../config/firebase/fbConfig";
 import { errorToast, successToast } from "../../shared/hooks/custom_toast";
 import { CurrencyInfo } from "../store/interfaces/currency_info";
-import axios from "axios";
+// import axios from "axios";
 import { getCurrency } from "../features/receipt_feature";
 
 
@@ -89,15 +89,17 @@ export const sendTransaction = createAsyncThunk(
             if (response) {
                 props.dispatch(transactionActions.resetPage());
                 try {
-                    await axios.post("http://localhost:3030/api/send", {
-                        subject: "Transaction",
-                        message: "Transaction with id " + appInfo.id + " has been submitted!",
-                    },);
-                    alert("Email sent!");
+                    // await axios.post("http://localhost:3030/api/send", {
+                    //     subject: "Transaction",
+                    //     message: "Transaction with id " + appInfo.id + " has been submitted!",
+                    // },);
+                    // alert("Email sent!");
                 } catch (error) {
                     console.log(error);
                 }
+
                 successToast("Transaction successful!", "We will contact you soon!");
+                window.open(`https://wa.me/+905466498935?text=Hi,%20I%20would%20like%20to%20send%20${appInfo.amount}%20${appInfo.selectedCurrency}%20from%20${appInfo.selectedFromCountry}%20to%20${appInfo.selectedToCountry}%20in%20${transaction["toCurrency"]}.%20Thanks!`, "_blank");
             } else {
                 errorToast("Transaction failed!")
             }

@@ -4,13 +4,13 @@
         "about_body": "Experience the ease of Smooth Money Flow with Solid Security, backed by our years of expertise.",
         "details": {
             "title": "Rakspay assures swift, secure financial transactions, backed by years of expertise.",
-            "detail_1_1": "2 years",
+            "detail_1_1": "Years",
             "detail_1_2": "of",
             "detail_1_3": "experience",
             "detail_2_1": "Low",
             "detail_2_2": "transaction",
             "detail_2_3": "rate",
-            "detail_3_1": "1 hour",
+            "detail_3_1": "15 mins",
             "detail_3_2": "response time"
         },
         "why_us": "WHY US?"
@@ -30,7 +30,7 @@
             "receiving": "Receiving",
             "transaction_speed": "Transaction Speed",
             "comission_is_exclusive": "Transaction fee is not inclusive!",
-            "time": "30 mins - 1 hour"
+            "time": "15 mins - 30 mins"
         },
         "transaction_details": "Transaction details",
         "select_country": "Select country",
@@ -60,7 +60,7 @@
         "about": "About",
         "body": "Effortlessly Facilitating Reliable and Secure Money Transfers",
         "contact_us": "Contact us",
-        "bottom": "Since 2020 at your service, Istanbul"
+        "bottom": "Since 2022 at your service, Istanbul"
     },
     "buttons": {
         "send_now": "Send now",
