@@ -4,13 +4,13 @@
         "about_body": "Yılların uzmanlığıyla desteklenen Sağlam Güvenlik ile Sorunsuz Para Akışının kolaylığını yaşayın.",
         "details": {
             "title": "Rakspay, yılların uzmanlığıyla desteklenen hızlı, güvenli finansal işlemleri garanti eder.",
-            "detail_1_1": "2 yıllık",
-            "detail_1_2": "deneyim",
+            "detail_1_1": "Yılların",
+            "detail_1_2": "deneyimi",
             "detail_1_3": "",
             "detail_2_1": "Düşük",
             "detail_2_2": "işlem",
             "detail_2_3": "oranı",
-            "detail_3_1": "1 saat",
+            "detail_3_1": "15 dakika",
             "detail_3_2": "yanıt süresi"
         },
         "why_us": "NEDEN BİZ?"
@@ -30,7 +30,7 @@
             "receiving": "Beklenen",
             "transaction_speed": "İşlem Hızı",
             "comission_is_exclusive": "Transaction fee is not inclusive!",
-            "time": "30 dakika - 1 saat"
+            "time": "15 dk - 30 dk"
         },
         "transaction_details": "Ödeme detayları",
         "select_country": "Ülke seçin",
@@ -60,7 +60,7 @@
         "about": "Hakkında",
         "body": "Güvenilir ve Güvenli Para Transferlerini Zahmetsizce Kolaylaştırıyoruz",
         "contact_us": "Bize ulaşın",
-        "bottom": "2020'den beri hizmetinizdeyiz, İstanbul"
+        "bottom": "2022'den beri hizmetinizdeyiz, İstanbul"
     },
     "buttons": {
         "send_now": "Şimdi gönder",
